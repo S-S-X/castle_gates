@@ -437,6 +437,10 @@ castle_gates.trigger_gate = function(pos, node, player)
 
 		if door_moved then
 			minetest.after(1, function(player_name)
+				if not door.all or not door.all[1] then
+					castle_gates.yeahwhateverdebughook(door)
+					return
+				end
 				-- Get current player ObjectRef (nil when gone)
 				castle_gates.trigger_gate(door.all[1].pos, door.all[1].node,
 					minetest.get_player_by_name(player_name))
@@ -444,3 +448,5 @@ castle_gates.trigger_gate = function(pos, node, player)
 		end
 	end
 end
+
+castle_gates.yeahwhateverdebughook = function() end
